@@ -10,7 +10,7 @@ import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
 
-    private var entradaUsuario: EditText? = null
+
     private var boton:Button?=null
     private var texto:TextView?=null
 
@@ -21,20 +21,29 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        var entradaUsuario: EditText?= null
         boton = findViewById<Button>(R.id.botoncito)
         entradaUsuario = findViewById<EditText>(R.id.editText)
         texto = findViewById<TextView>(R.id.textView)
+
+
+
 
         boton?.setOnClickListener(object : View.OnClickListener {
 
             override fun onClick(v: View?) {
 
 
-
+                val entrada:String = entradaUsuario.text.toString()
                 contadorNuevo +=1
-                texto?.append("usuario!!  boton se ha clickeado $contadorNuevo vez")
+              if(contadorNuevo==1)
+                texto?.append("usuario!!${entradaUsuario.text.toString()}  ha clickeado $contadorNuevo vez\n")
+                else
+                  texto?.append("usuario!! $entrada  ha clickeado $contadorNuevo veces\n")
+                if(contadorNuevo==10)
+                    Toast.makeText(this@MainActivity,"el boton se ha clikeado 10 veces",Toast.LENGTH_SHORT).show()
 
-                Toast.makeText(this@MainActivity,"se clickeo el boton",Toast.LENGTH_SHORT).show()
+               // Toast.makeText(this@MainActivity,"se clickeo el boton",Toast.LENGTH_SHORT).show()
 
 
             }
@@ -43,8 +52,5 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun avisoEmergente(view:View){
 
-        Toast.makeText(this,"se boton se ha clickeado 10 veces",Toast.LENGTH_SHORT).show()
-    }
 }
